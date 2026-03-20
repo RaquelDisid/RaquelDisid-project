@@ -1,0 +1,981 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
+
+
+:root {
+    /* Colores */
+    --color-fondo:        #f5f0e8;
+    --color-fondo-alt:    #ede5d4;
+    --color-superficie:   #faf7f2;
+    --color-tierra:       #a07840;
+    --color-tierra-oscura:#7a5a28;
+    --color-oliva:        #4a5c2e;
+    --color-oliva-claro:  #6a7e46;
+    --color-texto:        #2a2520;
+    --color-texto-medio:  #4a3f35;
+    --color-texto-suave:  #5e5248;
+    --color-borde:        rgba(160, 120, 64, 0.35);
+    --color-borde-activo: rgba(74, 92, 46, 0.7);
+    --color-error:        #9b2c2c;
+    --color-exito:        #2d6a35;
+    --color-header-bg:    #1e1a16;
+    --color-header-texto: #f0ebe0;
+
+    /* Tipografía */
+    --fuente-display: 'Cormorant Garamond', Georgia, serif;
+    --fuente-cuerpo:  'Jost', system-ui, sans-serif;
+
+    --texto-xs:   0.75rem;   /* 12px base */
+    --texto-sm:   0.875rem;  /* 14px */
+    --texto-base: 1rem;      /* 16px */
+    --texto-lg:   1.125rem;  /* 18px */
+    --texto-xl:   1.375rem;  /* 22px */
+    --texto-2xl:  1.75rem;   /* 28px */
+    --texto-3xl:  2.25rem;   /* 36px */
+    --texto-hero: clamp(2rem, 5vw, 3.5rem);
+
+    /* Espaciado */
+    --espacio-xs:  0.25rem;
+    --espacio-sm:  0.5rem;
+    --espacio-md:  1rem;
+    --espacio-lg:  1.5rem;
+    --espacio-xl:  2rem;
+    --espacio-2xl: 3rem;
+    --espacio-3xl: 4rem;
+
+    /* Forma y sombra */
+    --radio-sm:   0.375rem;
+    --radio-md:   0.625rem;
+    --radio-lg:   0.875rem;
+    --sombra-sm:  0 0.125rem 0.75rem rgba(42, 37, 32, 0.08);
+    --sombra-md:  0 0.25rem 1.5rem rgba(42, 37, 32, 0.12);
+    --sombra-lg:  0 0.5rem 2.25rem rgba(42, 37, 32, 0.18);
+
+    /* Transiciones */
+    --transicion: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Tamaño mínimo de área interactiva */
+    --min-tap: 2.75rem;  /* 44px */
+}
+
+
+/* 2. RESET Y BASE  */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 100%;
+}
+
+body {
+    font-family: var(--fuente-cuerpo);
+    font-weight: 300;
+    font-size: var(--texto-base);
+    line-height: 1.7;
+    color: var(--color-texto);
+}
+
+
+img,
+video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Lista base sin estilo */
+ul {
+    list-style: none;
+}
+
+/* Links base */
+a {
+    color: var(--color-oliva);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    transition: color var(--transicion);
+}
+
+a:hover {
+    color: var(--color-tierra-oscura);
+}
+
+
+/* 3. UTILIDADES */
+
+.oculto {
+    display: none !important;
+}
+
+
+/*  4. ACCESIBILIDAD: FOCO  */
+
+:focus-visible {
+    outline: 0.1875rem solid var(--color-oliva);
+    outline-offset: 0.1875rem;
+    border-radius: var(--radio-sm);
+}
+
+
+/*  5. HEADER  */
+header {
+    background-color: var(--color-header-bg);
+    color: var(--color-header-texto);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Línea decorativa superior */
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0.1875rem;
+    background: linear-gradient(
+            90deg,
+            transparent,
+            var(--color-tierra),
+            var(--color-oliva-claro),
+            var(--color-tierra),
+            transparent
+    );
+}
+
+/* Resplandor sutil en el fondo */
+header::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+            ellipse 100% 180% at 50% 120%,
+            rgba(160, 120, 64, 0.15) 0%,
+            transparent 65%
+    );
+    pointer-events: none;
+}
+
+.header-inner {
+    position: relative;
+    max-width: 60rem;
+    margin: 0 auto;
+    padding: var(--espacio-xl) var(--espacio-lg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--espacio-xl);
+    flex-wrap: wrap;
+}
+
+/* título */
+.header-brand h1 {
+    font-family: var(--fuente-display);
+    font-size: var(--texto-hero);
+    font-weight: 300;
+    letter-spacing: 0.03em;
+    line-height: 1.1;
+    color: var(--color-header-texto);
+}
+
+.header-subtitulo {
+    margin-top: var(--espacio-xs);
+    font-size: var(--texto-sm);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(240, 235, 224, 0.65);
+    font-weight: 300;
+}
+
+/* Navegación */
+nav ul {
+    display: flex;
+    gap: var(--espacio-md);
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: rgba(240, 235, 224, 0.8);
+    text-decoration: none;
+    font-size: var(--texto-sm);
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: var(--espacio-sm) var(--espacio-md);
+    border-radius: var(--radio-sm);
+    border: 0.0625rem solid transparent;
+    transition: color var(--transicion), border-color var(--transicion), background var(--transicion);
+    /* Área mínima de toque */
+    min-height: var(--min-tap);
+    display: inline-flex;
+    align-items: center;
+}
+
+nav a:hover {
+    color: var(--color-header-texto);
+    border-color: rgba(160, 120, 64, 0.5);
+    background: rgba(160, 120, 64, 0.1);
+}
+
+nav a:focus-visible {
+    outline-color: var(--color-tierra);
+}
+
+
+/*  6. MAIN  */
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+
+/*  7. SECCIONES  */
+section {
+    padding: var(--espacio-2xl) var(--espacio-lg);
+}
+
+/* Anchos máximos centrados */
+.intro-card,
+#multimedia > *,
+#seccion-formulario > h2,
+#reserva-form {
+    max-width: 45rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+/* Títulos de sección */
+section > h2,
+.intro-card > h2 {
+    font-family: var(--fuente-display);
+    font-size: var(--texto-2xl);
+    font-weight: 400;
+    color: var(--color-texto-medio);
+    letter-spacing: 0.04em;
+    margin-bottom: var(--espacio-lg);
+    position: relative;
+    padding-bottom: var(--espacio-sm);
+}
+
+section > h2::after,
+.intro-card > h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 2.5rem;
+    height: 0.125rem;
+    background: linear-gradient(90deg, var(--color-tierra), transparent);
+}
+
+
+/*  8. SECCIÓN SOBRE NOSOTROS  */
+#sobre-nosotros {
+    background-color: var(--color-superficie);
+    border-bottom: 0.0625rem solid var(--color-borde);
+}
+
+.intro-card p {
+    font-size: var(--texto-lg);
+    color: var(--color-texto-suave);
+    line-height: 1.8;
+    margin-bottom: var(--espacio-lg);
+}
+
+/* Lista de destacados con marcador personalizado */
+.lista-destacados {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-sm);
+}
+
+.lista-destacados li {
+    font-size: var(--texto-base);
+    color: var(--color-texto-medio);
+    padding-left: var(--espacio-lg);
+    position: relative;
+}
+
+/* Marcador decorativo de lista */
+.lista-destacados li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--color-tierra);
+}
+
+
+/*  9. SECCIÓN MULTIMEDIA  */
+#multimedia {
+    background-color: var(--color-fondo-alt);
+    border-bottom: 0.0625rem solid var(--color-borde);
+}
+
+#multimedia figure {
+    margin-bottom: var(--espacio-xl);
+    max-width: 45rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#multimedia figure:last-child {
+    margin-bottom: 0;
+}
+
+/* Imagen responsiva */
+#multimedia picture img {
+    width: 100%;
+    border-radius: var(--radio-md);
+    box-shadow: var(--sombra-md);
+}
+
+/* Vídeo responsivo */
+#multimedia video {
+    width: 100%;
+    border-radius: var(--radio-md);
+    box-shadow: var(--sombra-md);
+}
+
+
+figcaption {
+    font-size: var(--texto-sm);
+    color: var(--color-texto-suave);
+    margin-top: var(--espacio-sm);
+    font-style: italic;
+    letter-spacing: 0.02em;
+}
+
+
+/*  10. SECCIÓN FORMULARIO  */
+#seccion-formulario {
+    background-color: var(--color-fondo);
+}
+
+#seccion-formulario > h2 {
+    text-align: center;
+    margin-bottom: var(--espacio-xl);
+}
+
+#seccion-formulario > h2::after {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3rem;
+}
+
+
+/*  11. FORMULARIO  */
+#reserva-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-lg);
+    animation: entrar-form 0.45s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes entrar-form {
+    from {
+        opacity: 0;
+        transform: translateY(1.25rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/*  12. FIELDSETS */
+fieldset {
+    border: 0.0625rem solid var(--color-borde);
+    border-radius: var(--radio-lg);
+    background: var(--color-superficie);
+    padding: var(--espacio-xl) var(--espacio-lg) var(--espacio-lg);
+    box-shadow: var(--sombra-sm);
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-md);
+    transition: box-shadow var(--transicion), border-color var(--transicion);
+    position: relative;
+}
+
+fieldset:focus-within {
+    box-shadow: var(--sombra-md);
+    border-color: var(--color-borde-activo);
+}
+
+legend {
+    font-family: var(--fuente-display);
+    font-size: var(--texto-xl);
+    font-weight: 600;
+    color: var(--color-texto-medio);
+    letter-spacing: 0.05em;
+    padding: 0 var(--espacio-sm);
+    position: relative;
+}
+
+legend::after {
+    content: '';
+    display: block;
+    width: 1.75rem;
+    height: 0.125rem;
+    background: linear-gradient(90deg, var(--color-tierra), transparent);
+    margin-top: var(--espacio-xs);
+}
+
+
+.radio-fieldset {
+    border: none;
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+    gap: var(--espacio-sm);
+}
+
+.radio-fieldset:focus-within {
+    box-shadow: none;
+    border-color: transparent;
+}
+
+.radio-fieldset legend {
+    font-family: var(--fuente-cuerpo);
+    font-size: var(--texto-xs);
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-texto-suave);
+    padding: 0;
+    margin-bottom: var(--espacio-xs);
+}
+
+.radio-fieldset legend::after {
+    display: none;
+}
+
+
+/*  13. LABELS  */
+label {
+    display: block;
+    font-size: var(--texto-xs);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-texto-suave);
+    margin-bottom: var(--espacio-xs);
+}
+
+
+/*  14. INPUTS, SELECTS, TEXTAREA  */
+.campo-texto,
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="time"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    min-height: var(--min-tap);
+    padding: 0.625rem 0.875rem;
+    font-family: var(--fuente-cuerpo);
+    font-size: var(--texto-base);
+    font-weight: 300;
+    color: var(--color-texto);
+    background-color: var(--color-fondo);
+    border: 0.0625rem solid var(--color-borde);
+    border-radius: var(--radio-sm);
+    outline: none;
+    transition:
+            border-color var(--transicion),
+            box-shadow var(--transicion),
+            background-color var(--transicion);
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+/* Estado hover */
+.campo-texto:hover,
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="tel"]:hover,
+input[type="date"]:hover,
+input[type="time"]:hover,
+input[type="number"]:hover,
+select:hover,
+textarea:hover {
+    border-color: var(--color-tierra);
+}
+
+/* Estado focus  */
+.campo-texto:focus,
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--color-oliva);
+    box-shadow: 0 0 0 0.1875rem rgba(74, 92, 46, 0.2);
+    background-color: #ffffff;
+}
+
+
+::placeholder {
+    color: #9e9186;
+    font-weight: 300;
+}
+
+/* Select: flecha personalizada */
+select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235e5248' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.875rem center;
+    padding-right: 2.25rem;
+    cursor: pointer;
+}
+
+/* Textarea */
+textarea {
+    resize: vertical;
+    min-height: 7rem;
+    line-height: 1.7;
+}
+
+/* Input file */
+input[type="file"] {
+    padding: 0.5rem 0.75rem;
+    font-size: var(--texto-sm);
+    cursor: pointer;
+    background-color: var(--color-fondo-alt);
+    border-style: dashed;
+    min-height: var(--min-tap);
+}
+
+input[type="file"]:hover {
+    border-color: var(--color-tierra);
+}
+
+/* Fecha/hora */
+input[type="date"],
+input[type="time"] {
+    color-scheme: light;
+}
+
+
+/*  15. ESTADOS DE VALIDACIÓN  */
+
+/* Campo con error marcado por JS */
+input.invalido,
+select.invalido,
+textarea.invalido {
+    border-color: var(--color-error) !important;
+    box-shadow: 0 0 0 0.1875rem rgba(155, 44, 44, 0.15) !important;
+}
+
+
+/*  16. MENSAJES DE ERROR  */
+.error-msg {
+    display: none;
+    font-size: var(--texto-sm);
+    color: var(--color-error);
+    margin-top: var(--espacio-xs);
+    line-height: 1.4;
+    padding-left: 1.25rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' stroke='%239b2c2c' stroke-width='2' fill='none'/%3E%3Cline x1='12' y1='8' x2='12' y2='12' stroke='%239b2c2c' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='12' cy='16' r='1' fill='%239b2c2c'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left 0.1rem center;
+}
+
+.error-msg.visible {
+    display: block;
+    animation: aparecer 0.2s ease both;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(-0.25rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/*  17. LAYOUT INTERNO DEL FORMULARIO  */
+
+/* Fila de dos columnas fecha + hora */
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--espacio-md);
+}
+
+/* Contenedor de sección de grupos */
+#seccion-grupos {
+    background: linear-gradient(135deg, #fdf2e9 0%, #faf5ee 100%);
+    border: 0.0625rem solid rgba(160, 120, 64, 0.25);
+    border-radius: var(--radio-sm);
+    padding: var(--espacio-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-md);
+}
+
+/* Contenedor del CV */
+#contenedor-archivo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-xs);
+}
+
+
+/*  18. RADIO BUTTONS  */
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-xs);
+}
+
+
+.radio-group input[type="radio"] {
+
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: var(--texto-base);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    color: var(--color-texto-medio);
+    cursor: pointer;
+    padding: 0.6rem var(--espacio-md);
+    border-radius: var(--radio-sm);
+    border: 0.0625rem solid transparent;
+    background: var(--color-fondo);
+    transition:
+            background var(--transicion),
+            border-color var(--transicion),
+            color var(--transicion);
+    user-select: none;
+    min-height: var(--min-tap);
+}
+
+.radio-group label::before {
+    content: '';
+    flex-shrink: 0;
+    width: 1.125rem;
+    height: 1.125rem;
+    border-radius: 50%;
+    border: 0.125rem solid var(--color-tierra);
+    background: #fff;
+    transition:
+            background var(--transicion),
+            border-color var(--transicion),
+            box-shadow var(--transicion);
+}
+
+/* Estado seleccionado */
+.radio-group input[type="radio"]:checked + label {
+    background: rgba(160, 120, 64, 0.1);
+    border-color: rgba(160, 120, 64, 0.45);
+    color: var(--color-texto);
+    font-weight: 500;
+}
+
+.radio-group input[type="radio"]:checked + label::before {
+    background: var(--color-tierra);
+    border-color: var(--color-tierra);
+    box-shadow: inset 0 0 0 0.1875rem #fff;
+}
+
+/* Foco visible en radio  */
+.radio-group input[type="radio"]:focus-visible + label {
+    outline: 0.1875rem solid var(--color-oliva);
+    outline-offset: 0.125rem;
+    border-radius: var(--radio-sm);
+}
+
+.radio-group label:hover {
+    background: rgba(160, 120, 64, 0.07);
+    border-color: rgba(160, 120, 64, 0.3);
+}
+
+
+/*  19. CHECKBOX  */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+}
+
+
+.checkbox-group input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: var(--texto-base);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    text-transform: none;
+    color: var(--color-texto-medio);
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 0;
+    min-height: var(--min-tap);
+}
+
+/* Cuadrado decorativo */
+.checkbox-group label::before {
+    content: '';
+    flex-shrink: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 0.25rem;
+    border: 0.125rem solid var(--color-tierra);
+    background: #fff;
+    transition: background var(--transicion), border-color var(--transicion);
+}
+
+/* Estado marcado */
+.checkbox-group input[type="checkbox"]:checked + label::before {
+    background: var(--color-oliva);
+    border-color: var(--color-oliva);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='10' viewBox='0 0 12 10'%3E%3Cpath d='M1 5l3.5 3.5L11 1' stroke='%23fff' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Foco visible en checkbox */
+.checkbox-group input[type="checkbox"]:focus-visible + label {
+    outline: 0.1875rem solid var(--color-oliva);
+    outline-offset: 0.125rem;
+    border-radius: var(--radio-sm);
+}
+
+.enlace-terminos {
+    color: var(--color-oliva);
+    font-weight: 400;
+}
+
+
+/*  20. BOTÓN ENVIAR  */
+.btn-primario,
+#btn-enviar {
+    width: 100%;
+    min-height: var(--min-tap);
+    padding: 0.75rem var(--espacio-xl);
+    font-family: var(--fuente-cuerpo);
+    font-size: var(--texto-sm);
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-header-texto);
+    background: var(--color-header-bg);
+    border: none;
+    border-radius: var(--radio-sm);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    transition:
+            transform var(--transicion),
+            box-shadow var(--transicion);
+    box-shadow: var(--sombra-sm);
+}
+
+/* Capa de color hover por debajo del texto */
+#btn-enviar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--color-tierra-oscura), var(--color-oliva));
+    opacity: 0;
+    transition: opacity var(--transicion);
+    z-index: -1;
+}
+
+#btn-enviar:hover:not(:disabled) {
+    transform: translateY(-0.125rem);
+    box-shadow: var(--sombra-lg);
+}
+
+#btn-enviar:hover:not(:disabled)::before {
+    opacity: 1;
+}
+
+#btn-enviar:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+#btn-enviar:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/*  21. MENSAJE GLOBAL DE ENVÍO  */
+#mensaje-envio {
+    border-radius: var(--radio-sm);
+    font-size: var(--texto-base);
+    line-height: 1.6;
+}
+
+.mensaje-envio {
+    padding: var(--espacio-md) var(--espacio-lg);
+    animation: aparecer 0.3s ease both;
+}
+
+.mensaje-envio.exito {
+    background: rgba(45, 106, 53, 0.1);
+    border: 0.0625rem solid rgba(45, 106, 53, 0.35);
+    color: var(--color-exito);
+    border-radius: var(--radio-sm);
+}
+
+.mensaje-envio.error {
+    background: rgba(155, 44, 44, 0.08);
+    border: 0.0625rem solid rgba(155, 44, 44, 0.3);
+    color: var(--color-error);
+    border-radius: var(--radio-sm);
+}
+
+
+/*  22. FOOTER  */
+footer {
+    background: var(--color-header-bg);
+    color: rgba(240, 235, 224, 0.55);
+    text-align: center;
+    padding: var(--espacio-lg);
+    font-size: var(--texto-xs);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-top: 0.0625rem solid rgba(160, 120, 64, 0.2);
+}
+
+
+/*  23. MEDIA QUERIES  */
+
+/* — Tablet: ≤ 768px — */
+@media (max-width: 48em) {
+    .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--espacio-md);
+        padding: var(--espacio-lg) var(--espacio-md);
+    }
+
+    nav ul {
+        gap: var(--espacio-sm);
+    }
+
+    section {
+        padding: var(--espacio-xl) var(--espacio-md);
+    }
+
+    fieldset {
+        padding: var(--espacio-lg) var(--espacio-md) var(--espacio-md);
+    }
+
+    .row {
+        grid-template-columns: 1fr;
+        gap: var(--espacio-sm);
+    }
+}
+
+/* — Móvil: ≤ 480px — */
+@media (max-width: 30em) {
+    .header-brand h1 {
+        font-size: var(--texto-2xl);
+    }
+
+    section {
+        padding: var(--espacio-lg) var(--espacio-sm);
+    }
+
+    fieldset {
+        padding: var(--espacio-md) var(--espacio-sm) var(--espacio-sm);
+        border-radius: var(--radio-md);
+    }
+
+    legend {
+        font-size: var(--texto-lg);
+    }
+
+    .radio-group label {
+        font-size: var(--texto-sm);
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: var(--espacio-xs);
+    }
+}
+
+/* — Modo de alto contraste  — */
+@media (prefers-contrast: more) {
+    :root {
+        --color-borde:        rgba(0, 0, 0, 0.6);
+        --color-borde-activo: rgba(0, 0, 0, 0.9);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    input[type="time"],
+    input[type="number"],
+    select,
+    textarea {
+        border-width: 0.125rem;
+    }
+
+    :focus-visible {
+        outline-width: 0.25rem;
+    }
+}
+
+
+/* — Movimiento reducido — */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+}

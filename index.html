@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   <!-- Controla como se ve en móviles -->
+    <title>Sabor & Raíz | Reserva tu mesa · Restaurante en España</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <div class="header-inner">
+        <div class="header-brand">
+            <h1>Restaurante Sabor & Raíz</h1>
+            <p class="header-subtitulo">Cocina de temporada · Reservas y eventos privados</p>
+        </div>
+
+        <!-- Navegación principal del sitio -->
+        <nav aria-label="Navegación principal">
+            <ul>
+                <li><a href="#sobre-nosotros">Sobre nosotros</a></li>
+                <li><a href="#multimedia">Ambiente</a></li>
+                <li><a href="#reserva-form">Reservar mesa</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+    <!-- Sección de presentación -->
+    <section id="sobre-nosotros" aria-labelledby="titulo-nosotros">
+        <article class="intro-card">
+            <h2 id="titulo-nosotros">Bienvenidos a Sabor & Raíz</h2>
+            <p>
+                Somos un restaurante de cocina de temporada ubicado en el corazón de España.
+                Nuestra propuesta se basa en ingredientes locales, recetas de raíz y una
+                experiencia cercana para cada comensal.
+            </p>
+            <ul class="lista-destacados">
+                <li>Menú degustación disponible de jueves a domingo</li>
+                <li>Salón privado para eventos de hasta 60 personas</li>
+                <li>Carta de vinos con más de 40 referencias nacionales</li>
+            </ul>
+        </article>
+    </section>
+
+    <!-- Sección multimedia -->
+    <section id="multimedia" aria-labelledby="titulo-multimedia">
+        <h2 id="titulo-multimedia">Nuestro ambiente</h2>
+
+        <!-- Imagen responsiva -->
+        <figure>
+            <picture>
+                <source srcset="assets/restaurante-interior.jpg 800w"
+                        sizes="(max-width: 640px) 100vw, 800px"
+                        type="image/jpeg">
+
+                <img    src="assets/restaurante-interior.jpg"
+                        alt="Interior del restaurante Sabor y Raíz"
+                        width="800"
+                        height="450"
+                        loading="lazy">
+            </picture>
+            <figcaption>Nuestro comedor principal, con capacidad para 40 personas.</figcaption>
+        </figure>
+
+        <!-- Vídeo promocional del restaurante -->
+        <figure>
+            <video controls
+                    width="800"
+                    poster="assets/video-poster1.jpg"
+                    aria-label="Vídeo promocional del restaurante Sabor y Raíz">
+
+                <source src="assets/restaurante-promo-video.mp4" type="video/mp4">
+
+            </video>
+            <figcaption>Un vistazo a nuestra cocina y equipo.</figcaption>
+        </figure>
+
+    </section>
+
+    <!--  Sección del formulario -->
+    <section id="seccion-formulario" aria-labelledby="titulo-formulario">
+        <h2 id="titulo-formulario">Haz tu reserva</h2>
+
+        <form   id="reserva-form"
+                action="#"
+                method="post"
+                novalidate>
+
+            <!-- Grupo de radio buttons -->
+            <fieldset class="radio-fieldset">
+                <legend>¿Qué tipo de consulta deseas realizar?</legend>
+                <div class="radio-group">
+                    <input type="radio" id="reserva" name="tipo_consulta" value="reserva" checked>
+                    <label for="reserva">Reserva estándar</label>
+
+                    <input type="radio" id="evento" name="tipo_consulta" value="evento">
+                    <label for="evento">Evento privado / Grupo (+10 personas)</label>
+
+                    <input type="radio" id="empleo" name="tipo_consulta" value="empleo">
+                    <label for="empleo">Trabajar con nosotros</label>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Datos de Contacto</legend>
+
+                <label for="nombre">Nombre completo:</label>
+                <input type="text" id="nombre" name="nombre" required
+                       placeholder="Ej. Ana García"
+                       autocomplete="name"
+                       aria-describedby="error-nombre" aria-invalid="false">
+                <span class="error-msg" id="error-nombre" role="alert" aria-live="polite"></span>
+
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" name="email" required
+                       placeholder="ana@email.com"
+                       autocomplete="email"
+                       aria-describedby="error-email" aria-invalid="false">
+                <span class="error-msg" id="error-email" role="alert" aria-live="polite"></span>
+
+                <label for="telefono">Teléfono de contacto:</label>
+                <input type="tel" id="telefono" name="telefono" required
+                       pattern="[0-9]{9}" placeholder="600123456"
+                       title="Debe introducir un número de 9 dígitos"
+                       autocomplete="tel"
+                       aria-describedby="error-telefono" aria-invalid="false">
+                <span class="error-msg" id="error-telefono" role="alert" aria-live="polite"></span>
+
+                <label for="provincia">Provincia/Región:</label>
+                <select id="provincia" name="provincia" required
+                        autocomplete="address-level1"
+                        aria-describedby="error-provincia" aria-invalid="false">
+                    <option value="">Selecciona una opción</option>
+                    <option value="madrid">Madrid</option>
+                    <option value="barcelona">Barcelona</option>
+                    <option value="valencia">Valencia</option>
+                </select>
+                <span class="error-msg" id="error-provincia" role="alert" aria-live="polite"></span>
+            </fieldset>
+
+            <!-- Fieldset se oculta al seleccionar "Trabajar con nosotros" -->
+            <fieldset id="fieldset-reserva">
+                <legend>Detalles de la Reserva</legend>
+
+                <div class="row">
+                    <div class="col">
+                        <label for="fecha">Fecha:</label>
+                        <input type="date" id="fecha" name="fecha" required data-required
+                               autocomplete="off"
+                               aria-describedby="error-fecha" aria-invalid="false">
+                        <span class="error-msg" id="error-fecha" role="alert" aria-live="polite"></span>
+                    </div>
+                    <div class="col">
+                        <label for="hora">Hora:</label>
+                        <input type="time" id="hora" name="hora" required data-required
+                               min="13:00" max="23:30"
+                               autocomplete="off"
+                               aria-describedby="error-hora" aria-invalid="false">
+                        <span class="error-msg" id="error-hora" role="alert" aria-live="polite"></span>
+                    </div>
+                </div>
+
+
+                <div id="contenedor-comensales-normal">
+                    <label for="comensales_normal">Número de personas:</label>
+                    <input type="number" id="comensales_normal" name="comensales_normal"
+                           min="1" max="9" value="2" required
+                           autocomplete="off"
+                           aria-describedby="error-comensales_normal" aria-invalid="false">
+                    <span class="error-msg" id="error-comensales_normal" role="alert" aria-live="polite"></span>
+                </div>
+
+                <!-- Sección extra para eventos de grupo -->
+                <div id="seccion-grupos" class="oculto" aria-hidden="true">
+                    <label for="comensales_evento">Personas para el evento:</label>
+                    <input type="number" id="comensales_evento" name="comensales_evento"
+                           min="10" placeholder="10"
+                           autocomplete="off"
+                           aria-describedby="error-comensales_evento" aria-invalid="false">
+                    <span class="error-msg" id="error-comensales_evento" role="alert" aria-live="polite"></span>
+
+                    <label for="preferencia-menu">Selección de Menú:</label>
+                    <select id="preferencia-menu" name="preferencia-menu" autocomplete="off">
+                        <option value="tapas">Menú Tapas</option>
+                        <option value="degustacion">Menú Degustación</option>
+                    </select>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Información Adicional</legend>
+
+                <label for="asunto">Asunto:</label>
+                <input type="text" id="asunto" name="asunto"
+                       placeholder="Ej. Cumpleaños, alergias..."
+                       autocomplete="off">
+
+                <label for="mensaje">Mensaje:</label>
+                <textarea id="mensaje" name="mensaje" rows="4"
+                          placeholder="Cuéntanos cualquier detalle que debamos tener en cuenta..."
+                          autocomplete="off"></textarea>
+
+                <!-- Sección de CV: JS la muestra solo en "Trabajar con nosotros" -->
+                <div id="contenedor-archivo" class="oculto">
+                    <label for="curriculum">Adjuntar CV (PDF/DOC):</label>
+                    <input type="file" id="curriculum" name="curriculum"
+                           accept=".pdf,.doc,.docx"
+                           aria-describedby="error-curriculum" aria-invalid="false">
+                    <span class="error-msg" id="error-curriculum" role="alert" aria-live="polite"></span>
+                </div>
+            </fieldset>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="terminos" name="terminos" required
+                       aria-describedby="error-terminos" aria-invalid="false">
+                <label for="terminos">Acepto los <a href="#" class="enlace-terminos">términos y condiciones</a>.</label>
+            </div>
+            <span class="error-msg" id="error-terminos" role="alert" aria-live="polite"></span>
+
+
+            <div id="mensaje-envio" role="status" aria-live="polite" aria-atomic="true"></div>
+
+            <button type="submit" id="btn-enviar">Confirmar Reserva</button>
+
+        </form>
+    </section>
+
+</main>
+
+<footer>
+    <p>&copy; 2026 Restaurante Sabor &amp; Raíz &mdash; Todos los derechos reservados</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
